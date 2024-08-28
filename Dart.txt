@@ -1,0 +1,80 @@
+abstract class Empleado {
+  String nombre;
+  double salario;
+  
+  Empleado(this.nombre, this.salario);
+  
+  double calcularBonificacion(){
+    return salario;
+  }
+  
+  void mostrarDetallesEmpeado(){
+    print('Nombre: $nombre, Salario: $salario ');
+  }
+}
+
+class Gerente extends Empleado{
+  Gerente(String nombre, double salario) : super (nombre, salario);
+  @override
+  double calcularBonificacion(){
+    double boni;
+    boni = super.calcularBonificacion()* 0.2;
+    print('Bonificación de $nombre: $boni');
+    return boni;
+  }
+}
+
+class Operario extends Empleado{
+  Operario(String nombre, double salario) : super (nombre, salario);
+  @override
+  double calcularBonificacion(){
+    double boni;
+    boni= super.calcularBonificacion()* 0.1;
+    print('Bonificación de $nombre: $boni');
+    return boni;
+  }
+}
+
+void main(){
+     var gerente = Gerente('Josue', 25.00);
+  gerente.calcularBonificacion();
+  gerente.mostrarDetallesEmpeado();
+  var operario = Operario('Aaron', 100.00);
+  operario.calcularBonificacion();
+  operario.mostrarDetallesEmpeado();
+}
+class Vehiculo {
+  String marca;
+  String modelo;
+  String year;
+
+  Vehiculo(this.marca, this.modelo, this.year);
+  
+  void mostrarDetalles() {
+    print('Marca: $marca \nModelo: $modelo \nAño: $year');
+  }
+}
+
+class Auto extends Vehiculo {
+  String tipoCombustible;
+  
+  Auto(String marca, String modelo, String year, this.tipoCombustible)
+      : super(marca, modelo, year);
+  
+  Auto.electrico(String marca, String modelo, String year)
+      : tipoCombustible = 'Electrico', super(marca, modelo, year);
+  
+  @override
+  void mostrarDetalles() {
+    super.mostrarDetalles();
+    print('Tipo de Combustible: $tipoCombustible');
+  }
+}
+
+void main() {
+    var auto1 = Auto('Toyota', 'Corolla', '2022', 'Gasolina');
+  auto1.mostrarDetalles();
+  
+  var auto2 = Auto.electrico('Tesla', 'Model S', '2023');
+  auto2.mostrarDetalles();
+}
